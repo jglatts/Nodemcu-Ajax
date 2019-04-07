@@ -62,7 +62,8 @@ void setup(void){
     server.on("/Time", calcTime);
     server.on("/", [](){
         page = "<h1>Sensor to Node MCU Web Server</h1>\r\n";
-        page += "<br><a href=\"Time\">Time It</a>\r\n";
+        // change the JS here to record the time ONLY when the Time It link has been clicked
+        page += "<br><a href=\"Time\" onclick=\"\">Time It</a>\r\n";
         page += "<script>\r\n";
         page += "var x = setInterval(function() {loadData(\"data.txt\",updateData)}, 1000);\r\n";
         page += "function loadData(url, callback){\r\n";
@@ -76,7 +77,6 @@ void setup(void){
         page += "xhttp.send();\r\n";
         page += "}\r\n";
         page += "function updateData(){\r\n";
-        // JS debug
         page += " console.log(this.responseText);\r\n";
         page += "}\r\n";
         page += "</script>\r\n";
@@ -89,7 +89,7 @@ void setup(void){
 
 
 void calcTime() {
-    time_page = "<h1>Sensor to Node MCU Web Server</h1><h1>Time:</h1><h1 id=\"mins\">""</h1><h1> and <h1><h1 id=\"secs\">""</h1>\r\n";
+    time_page = "<h1>Sensor to Node MCU Web Server</h1><h1 style=\"display:inline;\">Time: </h1><h1 id=\"mins\" style=\"display:inline;\">""</h1><h1 style=\"display:inline;\"> and </h1><h1 id=\"secs\" style=\"display:inline;\">""</h1>\r\n";
     time_page += "<script>\r\n";
     time_page += "var x = setInterval(function() {loadTime(\"time.txt\",updateTime)}, 1000);\r\n";
     time_page += "function loadTime(url, callback){\r\n";
@@ -103,7 +103,6 @@ void calcTime() {
     time_page += "xhttp_time.send();\r\n";
     time_page += "}\r\n";
     time_page += "function updateTime(){\r\n";
-    // use the delimiter to access mins and secs
     time_page += "var timeArray = this.responseText.split(\"||\");\r\n";
     time_page += "console.log(timeArray[0]);\r\n";
     time_page += "console.log(timeArray[1]);\r\n";
