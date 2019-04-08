@@ -4,6 +4,8 @@
  * Author: John Glatts
  * Date: 4/6/19
  *
+ * ToDo:
+ *      - Add a .h file and place all the html stuff there
  *
  */
 
@@ -14,7 +16,7 @@
 
 // Replace with your network credentials
 const char* ssid = "your-wifi";
-const char* password = "your-pw";
+const char* password = "your-wifi";
 ESP8266WebServer server(80);   //instantiate server at port 80 (http port)
 
 
@@ -89,7 +91,10 @@ void setup(void){
 
 
 void calcTime() {
-    time_page = "<h1>Sensor to Node MCU Web Server</h1><h1 style=\"display:inline;\">Time: </h1><h1 id=\"mins\" style=\"display:inline;\">""</h1><h1 style=\"display:inline;\"> and </h1><h1 id=\"secs\" style=\"display:inline;\">""</h1>\r\n";
+    time_page = "<h1>Sensor to Node MCU Web Server</h1>";
+    time_page += "<h1 style=\"display:inline;\">Time: </h1><h1 id=\"mins\" style=\"display:inline;\">""</h1><h1 style=\"display:inline;\"> mins </h1>";
+    time_page += "<h1 style=\"display:inline;\"> and </h1><h1 id=\"secs\" style=\"display:inline;\">""</h1>";
+    time_page += "<h1 style=\"display:inline;\"> secs. </h1>\r\n";
     time_page += "<script>\r\n";
     time_page += "var x = setInterval(function() {loadTime(\"time.txt\",updateTime)}, 1000);\r\n";
     time_page += "function loadTime(url, callback){\r\n";
