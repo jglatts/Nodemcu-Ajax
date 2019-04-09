@@ -6,6 +6,6 @@ Nodemcu server with a small amount of ajax
 
 
 # Instructions
-  - Make sure the .h file and the .ino file are in the **same directory**
+  - Make sure that htmlpage.h and esp_ajax.ino are in the **same directory**
   - Enter your wifi credentials and you're good to go!
   - When the browser loads 10.0.0.xxx/Time, hit refresh to see the AJAX displaying the elapsed time
