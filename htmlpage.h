@@ -1,5 +1,5 @@
   /*
-   * HTML Header file for nodemcu ajax sketch
+   * HTML/JS Header file for nodemcu ajax sketch
    * Author: John Glatts
    * Date: 4/8/19
    *
