@@ -3,6 +3,9 @@
 
 
 Nodemcu server with a small amount of ajax
+
+
+
 The goal here was to calculate the elapsed time spent on a web-page, and update the info. using Ajax
 
 
