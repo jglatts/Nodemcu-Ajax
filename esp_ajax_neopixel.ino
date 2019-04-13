@@ -4,10 +4,6 @@
  * Author: John Glatts
  * Date: 4/6/19
  *
- * ToDo:
- *      - Add a .h file and all the html stuff there
- *      - Add support for neo-pixel and update every minute
- *
  */
 #include <Adafruit_NeoPixel.h>
 #include <ESP8266WiFi.h>
