@@ -1,8 +1,12 @@
 /*
  *
- * Nodemcu Ajax sketch with Neopixel support
+ * WORKING TEST AJAX NODEMCU sketch
  * Author: John Glatts
  * Date: 4/6/19
+ *
+ * ToDo:
+ *      - Add a .h file and all the html stuff there
+ *      - Add support for neo-pixel and update every minute
  *
  */
 #include <Adafruit_NeoPixel.h>
@@ -23,7 +27,7 @@ const char* ssid = "";
 const char* password = "";
 
 
-ESP8266WebServer server(80);   //instantiate server at port 80 (http port)
+ESP8266WebServer server(80);   // instantiate server at port 80
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUM_PIX, pix_pin, NEO_GRB + NEO_KHZ800);
 
 
@@ -40,7 +44,7 @@ void setup(void){
     pixels.begin();
     pixels.show();
     Serial.begin(115200);
-    WiFi.begin(ssid, password); //begin WiFi connection
+    WiFi.begin(ssid, password); // begin WiFi connection
     Serial.println("");
 
     // Wait for connection
@@ -62,24 +66,10 @@ void setup(void){
     });
     server.on("/time.txt", [](){
         // calc. elapsed time and update xml
-        finish_time = millis();
-        elapsed_time = finish_time - data;
-        motor_mins = int(elapsed_time / 60000);
-        mod = elapsed_time % 60000;
-        motor_secs = int(mod / 1000);
-        time_text = String(motor_mins);
-        time_text += "||";  // delimiter
-        time_text += String(motor_secs);
-        // light up the pixel
-        if (motor_mins >= 1) {
-            for (int i = 0; i < motor_mins; ++i) {
-                pixels.setPixelColor(i, pixels.Color(random(0, 256), random(0, 256), random(0, 256)));
-                pixels.show();
-            }
-        }
+        pixelCalc();
         server.send(200, "text/html", time_text);
     });
-    server.on("/Time", calcTime);
+    server.on("/Time", displayElapsedTime);
     server.on("/", [](){
         index_page = page;
         server.send(200, "text/html", index_page);
@@ -100,7 +90,7 @@ void handleNotFound() {
     message += "\nArguments: ";
     message += server.args();
     message += "\n";
-    // spit out and display the URL that's not found
+    // display the URL that's not found
     for (uint8_t i = 0; i < server.args(); i++) {
         message += " " + server.argName(i) + ": " + server.arg(i) + "\n";
     }
@@ -108,7 +98,29 @@ void handleNotFound() {
     server.send(404, "text/plain", message);
 }
 
-void calcTime() {
+
+/* Get the elapsed time and display it on the Neopixel*/
+void pixelCalc() {
+    finish_time = millis();
+    elapsed_time = finish_time - data;
+    motor_mins = int(elapsed_time / 60000);
+    mod = elapsed_time % 60000;
+    motor_secs = int(mod / 1000);
+    time_text = String(motor_mins);
+    time_text += "||";  // delimiter
+    time_text += String(motor_secs);
+    // light up the pixel
+    if (motor_mins >= 1) {
+        for (int i = 0; i < motor_mins; ++i) {
+            pixels.setPixelColor(i, pixels.Color(random(0, 256), random(0, 256), random(0, 256)));
+            pixels.show();
+        }
+    }
+}
+
+
+/* Display the elapsed time */
+void displayElapsedTime() {
     calc_time_page = time_page;
     server.send(200, "text/html", calc_time_page);
 }
