@@ -6,10 +6,6 @@ Nodemcu server with a small amount of ajax
 
 
 
-The goal here was to calculate the elapsed time spent on a web-page, and update the info. using Ajax
-
-
-
 # esp_ajax_neopixel.ino
   - Basically the same sketch, but uses an Adafruit Neopixel to display the elapsed time
   - The pixel pin is connected to pin 5 of the Nodemcu
