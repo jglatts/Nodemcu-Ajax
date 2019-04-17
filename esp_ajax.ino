@@ -4,8 +4,6 @@
  * Author: John Glatts
  * Date: 4/6/19
  *
- * ToDo:
- *      - :)
  */
 
 #include <ESP8266WiFi.h>
