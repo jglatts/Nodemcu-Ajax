@@ -1,7 +1,6 @@
 /*
  * Nodemcu sketch to update the elapsed time using ajax 
  * Author: John Glatts
- * Date: 4/6/19
  *
  */
 
