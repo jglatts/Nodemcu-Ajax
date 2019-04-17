@@ -15,7 +15,7 @@ Nodemcu server with a small amount of ajax
 
 
 # esp_ajax_neopixel.ino
-  - Basically the same sketch, but uses an Adafruit Neopixel to display the elapsed time
+  - Basically the same sketch, but uses an Adafruit Neopixel to display the elapsed time along with the webserver
   - The pixel pin is connected to pin 5 of the Nodemcu
 
 
