@@ -6,16 +6,18 @@ Nodemcu server with a small amount of ajax
 
 
 
+
+# JSON AJAX
+  - **JSON support!**
+  - Display values from JSON that are continuously updated with Ajax
+  
+
+
 # Instructions
   - Make sure that htmlpage.h and esp_ajax.ino are in the **same directory**
   - Enter your wifi credentials and you're good to go!
   - When the browser loads 'yourwebserver'/Time, hit refresh to see the AJAX displaying the elapsed time
 
-
-
-# JSON AJAX
-  - **JSON support!**
-  - Display values from JSON that are continuously updated with Ajax
 
 
 
