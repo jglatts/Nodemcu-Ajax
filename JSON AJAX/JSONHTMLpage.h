@@ -200,18 +200,18 @@
       </div>
       </body>
         <script>
-         var x = setInterval(function() {displayStats("stats.json",updateJson)}, 5500)
-          function displayStats(url, callback){
-                var xhttp_display_stats = new XMLHttpRequest()
-                xhttp_display_stats.onreadystatechange = function(){
+              var x = setInterval(function() {loadJSON('stats.json',updateJSON)}, 1000)
+              function loadJSON(url, callback){
+                var xhttp = new XMLHttpRequest()
+                xhttp.onreadystatechange = function(){
                 if(this.readyState == 4 && this.status == 200){
-                      callback.apply(xhttp_display_stats)
-                }
-               xhttp_display_stats.open("GET", url, true)
-               xhttp_display_stats.send()
-                }
-               };
-              function updateJson(){
+                    callback.apply(xhttp)
+                  }
+                };
+                xhttp.open("GET", url, true)
+                xhttp.send()
+              }
+              function updateJSON(){
                   console.log(this.responseText)
                   console.log('Test')
                   var statsObj = JSON.parse(this.responseText)
@@ -219,8 +219,7 @@
                   document.getElementById("mac_address").innerHTML = statsObj.mac_address
                   document.getElementById("sketch_hash").innerHTML = statsObj.sketch_hash
                   document.getElementById("wifi_mode").innerHTML = statsObj.wifi_mode
-               }
-          }
+              }
       </script>
        <style>
             body {
