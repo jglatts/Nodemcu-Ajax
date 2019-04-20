@@ -13,6 +13,11 @@ Nodemcu server with a small amount of ajax
 
 
 
+# JSON AJAX
+  - **JSON support!**
+  - Display values from JSON that are continuously updated with Ajax
+
+
 
 # esp_ajax_neopixel.ino
   - Basically the same sketch, but uses an Adafruit Neopixel to display the elapsed time along with the webserver
