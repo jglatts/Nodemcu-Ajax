@@ -2,7 +2,6 @@
    * HTML Header file for nodemcu ajax sketch
    * Author: John Glatts
    * Date: 4/8/19
-   * Use stats feature from ESP-DASH to display better stats
    *
    */
 
