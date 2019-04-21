@@ -2,6 +2,7 @@
    * HTML Header file for nodemcu ajax sketch
    * Author: John Glatts
    * Date: 4/8/19
+   * Use stats feature from ESP-DASH to display better stats
    *
    */
 
@@ -13,14 +14,16 @@
        </head>
        <body>
        <h1 class="name">JDG ESP SERVER</h1>
-        <ul>
-            <li><a class="active" href="/" id="first-nav">Home</a></li>
-            <li onclick="window.alert('BOARD: ESP8266')"><a>Board Info</a></li>
-            <li onclick="updateStatsXML()"><a href="">Stats</a></li>
-            <li onclick="window.alert('John Glatts 2019')"><a>About</a></li>
-         </ul>
+        <div class="rc_nav" id="centered_nav">
+        <a href="/">Home</a>
+        <a href="Stats">Board Stats</a>
+        <a href="About">About</a>
+        <a href="Reboot">Reboot</a>
+        <a href="javascript:void(0);" title="Menu" style="font-size:18px;" class="icon" onclick="myFunction()">&#9776;</a>
+        </div>
        <h1 class="content">Sensor to Node MCU Web Server</h1>
-       <h1 class="content"><br><a href="Time">Time It</a></h1>
+       <h1 class="content"><a href="Time">Time It</a></h1>
+       <h1 class="content"><a href="MotorOn">Motor On</a></h1>
        </body>
         <script>
               var x = setInterval(function() {loadData('data.txt',updateData)}, 500)
@@ -37,6 +40,14 @@
               function updateData(){
                 console.log(this.responseText)
               }
+              function myFunction() {
+                var x = document.getElementById("centered_nav");
+                if (x.className === "rc_nav") {
+                    x.className += " responsive";
+                } else {
+                    x.className = "rc_nav";
+                }
+              }
           </script>
           <style>
             body {
@@ -50,31 +61,68 @@
             .content {
               text-align: center;
             }
-            #first-nav {
-               margin-left: 37em;
-            }
-            ul {
-              list-style-type: none;
-              margin: 0;
-              padding: 5px;
+            .rc_nav {
               overflow: hidden;
-              background-color: #333;
-            }
-
-            li {
-              float: left
-            }
-
-            li a {
-              display: inline-block;
-              color: white;
+              background-color: #363841;
               text-align: center;
-              padding: 14px 16px;
-              text-decoration: none;
+              z-index: 6;
             }
 
-            li a:hover {
-              background-color: #111;
+            .rc_nav a {
+             display: inline-block;
+             margin-right: -4px;  /* inline-block gap fix */
+             color: #fff;
+             padding: 22px 22px;
+             text-decoration: none;
+             font-family: Poppins;
+             font-size: 18px;
+             -webkit-transition: background 0.3s linear;
+             -moz-transition: background 0.3s linear;
+             -ms-transition: background 0.3s linear;
+             -o-transition: background 0.3s linear;
+             transition: background 0.3s linear;
+             z-index: 9;
+            }
+
+            .rc_nav a:hover {
+              background-color: #575b69;
+              color: #bdfe0e2;
+            }
+
+            .rc_nav .icon {
+              display: none;
+            }
+
+            .rc_content {
+              text-align: center;
+              padding-left:14px;
+              font-family: Poppins;
+              margin-top: 100px;
+              color: #8e909b;
+            }
+
+
+            @media screen and (max-width: 820px) {
+              .rc_nav a {display: none;}
+              .rc_nav a.icon {
+                float: right;
+                display: block;
+                width: 60px;
+              }
+            }
+
+            @media screen and (max-width: 820px) {
+              .rc_nav.responsive {position: relative; top: 73px;}
+              .rc_nav.responsive .icon {
+                position: fixed;
+                right: 0;
+                top: 0;
+              }
+              .rc_nav.responsive a {
+                float: none;
+                display: block;
+                text-align: center;
+              }
             }
           </style>
   )=====";
@@ -88,12 +136,13 @@
        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
       </head>
       <h1 class="name">JDG ESP SERVER</h1>
-      <ul>
-            <li><a class="active" href="/" id="first-nav">Home</a></li>
-            <li onclick="window.alert('BOARD: ESP8266')"><a>Board Info</a></li>
-            <li onclick="window.alert('STATS: EVERYTHING BE GUCCI')"><a href="Stats">Stats</a></li>
-            <li onclick="window.alert('John Glatts 2019')"><a>About</a></li>
-      </ul>
+      <div class="rc_nav" id="centered_nav">
+        <a href="/">Home</a>
+        <a href="Stats">Board Stats</a>
+        <a href="About">About</a>
+        <a href="Reboot">Reboot</a>
+        <a href="javascript:void(0);" title="Menu" style="font-size:18px;" class="icon" onclick="myFunction()">&#9776;</a>
+      </div>
       <div class="time-content">
       <h1>Sensor to Node MCU Web Server</h1>
       <h1 style="display:inline;">Elapsed Time: </h1><h1 id="mins" style="display:inline;"></h1><h1 style="display:inline;"> mins </h1>
@@ -120,6 +169,14 @@
               document.getElementById("mins").innerHTML = timeArray[0]
               document.getElementById("secs").innerHTML = timeArray[1]
           }
+          function myFunction() {
+                var x = document.getElementById("centered_nav");
+                if (x.className === "rc_nav") {
+                    x.className += " responsive";
+                } else {
+                    x.className = "rc_nav";
+                }
+          }
       </script>
        <style>
             body {
@@ -136,31 +193,68 @@
             .content {
               text-align: center;
             }
-            #first-nav {
-               margin-left: 37em;
-            }
-            ul {
-              list-style-type: none;
-              margin: 0;
-              padding: 5px;
+            .rc_nav {
               overflow: hidden;
-              background-color: #333;
-            }
-
-            li {
-              float: left
-            }
-
-            li a {
-              display: inline-block;
-              color: white;
+              background-color: #363841;
               text-align: center;
-              padding: 14px 16px;
-              text-decoration: none;
+              z-index: 6;
             }
 
-            li a:hover {
-              background-color: #111;
+            .rc_nav a {
+             display: inline-block;
+             margin-right: -4px;  /* inline-block gap fix */
+             color: #fff;
+             padding: 22px 22px;
+             text-decoration: none;
+             font-family: Poppins;
+             font-size: 18px;
+             -webkit-transition: background 0.3s linear;
+             -moz-transition: background 0.3s linear;
+             -ms-transition: background 0.3s linear;
+             -o-transition: background 0.3s linear;
+             transition: background 0.3s linear;
+             z-index: 9;
+            }
+
+            .rc_nav a:hover {
+              background-color: #575b69;
+              color: #bdfe0e2;
+            }
+
+            .rc_nav .icon {
+              display: none;
+            }
+
+            .rc_content {
+              text-align: center;
+              padding-left:14px;
+              font-family: Poppins;
+              margin-top: 100px;
+              color: #8e909b;
+            }
+
+
+            @media screen and (max-width: 820px) {
+              .rc_nav a {display: none;}
+              .rc_nav a.icon {
+                float: right;
+                display: block;
+                width: 60px;
+              }
+            }
+
+            @media screen and (max-width: 820px) {
+              .rc_nav.responsive {position: relative; top: 73px;}
+              .rc_nav.responsive .icon {
+                position: fixed;
+                right: 0;
+                top: 0;
+              }
+              .rc_nav.responsive a {
+                float: none;
+                display: block;
+                text-align: center;
+              }
             }
         </style>
   )=====";
@@ -177,24 +271,25 @@
       </head>
       <body>
       <h1 class="name">JDG ESP SERVER</h1>
-      <ul class = "topnav">
-            <li><a class="active" href="/" id="first-nav">Home</a></li>
-            <li onclick="window.alert('BOARD: ESP8266')"><a>Board Info</a></li>
-            <li onclick="window.alert('STATS: EVERYTHING BE GUCCI')"><a href="Stats">Stats</a></li>
-            <li onclick="window.alert('John Glatts 2019')"><a>About</a></li>
-      </ul>
+      <div class="rc_nav" id="centered_nav">
+        <a href="/">Home</a>
+        <a href="Stats">Board Stats</a>
+        <a href="About">About</a>
+        <a href="Reboot">Reboot</a>
+        <a href="javascript:void(0);" title="Menu" style="font-size:18px;" class="icon" onclick="myFunction()">&#9776;</a>
+      </div>
       <div class="time-content">
-      <h1 style="display:inline-block;">Chip ID: </h1>
-      <h1 id = "chipID" style="display:inline-block;"></h1>
+      <h2 style="display:inline-block;">Chip ID: </h2>
+      <h2 id = "chipID" style="display:inline-block;"></h2>
       <br>
-      <h1 style="display:inline-block;">MAC Address: </h1>
-      <h1 id = "mac_address" style="display:inline-block;"></h1>
+      <h2 style="display:inline-block;">MAC Address: </h2>
+      <h2 id = "mac_address" style="display:inline-block;"></h2>
       <br>
-      <h1 style="display:inline-block;">Sketch Hash: </h1>
-      <h1 id = "sketch_hash" style="display:inline-block;"></h1>
+      <h2 style="display:inline-block;">Sketch Hash: </h2>
+      <h2 id = "sketch_hash" style="display:inline-block;"></h2>
       <br>
-      <h1 style="display:inline-block;">WiFi Mode: </h1>
-      <h1 id = "wifi_mode" style="display:inline-block;"></h1>
+      <h2 style="display:inline-block;">WiFi Mode: </h2>
+      <h2 id = "wifi_mode" style="display:inline-block;"></h2>
       <br>
       </div>
       </body>
@@ -219,6 +314,14 @@
                   document.getElementById("sketch_hash").innerHTML = statsObj.sketch_hash
                   document.getElementById("wifi_mode").innerHTML = statsObj.wifi_mode
               }
+              function myFunction() {
+                var x = document.getElementById("centered_nav");
+                if (x.className === "rc_nav") {
+                    x.className += " responsive";
+                } else {
+                    x.className = "rc_nav";
+                }
+              }
       </script>
        <style>
             body {
@@ -235,32 +338,68 @@
             .content {
               text-align: center;
             }
-            ul {
-              text-align: center;
-              list-style-type: none;
-              margin: 0;
-              padding: 5px;
+            .rc_nav {
               overflow: hidden;
-              background-color: #333;
+              background-color: #363841;
+              text-align: center;
+              z-index: 6;
             }
 
-            li {
-              text-align: center;
+            .rc_nav a {
+             display: inline-block;
+             margin-right: -4px;  /* inline-block gap fix */
+             color: #fff;
+             padding: 22px 22px;
+             text-decoration: none;
+             font-family: Poppins;
+             font-size: 18px;
+             -webkit-transition: background 0.3s linear;
+             -moz-transition: background 0.3s linear;
+             -ms-transition: background 0.3s linear;
+             -o-transition: background 0.3s linear;
+             transition: background 0.3s linear;
+             z-index: 9;
             }
 
-            li a {
-              text-align: center;
-              color: white;
-              text-align: center;
-              padding: 14px 16px;
-              text-decoration: none;
+            .rc_nav a:hover {
+              background-color: #575b69;
+              color: #bdfe0e2;
             }
 
-            li a:hover {
-              background-color: #111;
+            .rc_nav .icon {
+              display: none;
             }
-            @media screen and (max-width: 600px) {
-              ul.topnav li {float: none;}
+
+            .rc_content {
+              text-align: center;
+              padding-left:14px;
+              font-family: Poppins;
+              margin-top: 100px;
+              color: #8e909b;
+            }
+
+
+            @media screen and (max-width: 820px) {
+              .rc_nav a {display: none;}
+              .rc_nav a.icon {
+                float: right;
+                display: block;
+                width: 60px;
+              }
+            }
+
+            @media screen and (max-width: 820px) {
+              .rc_nav.responsive {position: relative; top: 73px;}
+              .rc_nav.responsive .icon {
+                position: fixed;
+                right: 0;
+                top: 0;
+              }
+              .rc_nav.responsive a {
+                float: none;
+                display: block;
+                text-align: center;
+              }
             }
         </style>
   )=====";
