@@ -22,8 +22,11 @@
         <a href="javascript:void(0);" title="Menu" style="font-size:18px;" class="icon" onclick="myFunction()">&#9776;</a>
         </div>
        <h1 class="content">Sensor to Node MCU Web Server</h1>
-       <h1 class="content"><a href="Time">Time It</a></h1>
-       <h1 class="content"><a href="MotorOn">Motor On</a></h1>
+       <div id = "all-buttons">
+       <button class="content-buttons"><a href="Time">Time It</a></button>
+       <br>
+       <button class="content-buttons"><a href="MotorOn">Motor On</a></button>
+       </div>
        </body>
         <script>
               var x = setInterval(function() {loadData('data.txt',updateData)}, 500)
@@ -58,9 +61,23 @@
               size: 4em;
               text-align: center;
             }
+            a {
+              text-decoration: none;
+            }
             .content {
               text-align: center;
             }
+            #all-buttons {
+                text-align: center;
+            }
+            .content-buttons {
+              margin-top: 2em;
+              padding: 15px;
+              background-color: Gainsboro;
+              font-size: 2em;
+              text-align: center;
+             }
+
             .rc_nav {
               overflow: hidden;
               background-color: #363841;
